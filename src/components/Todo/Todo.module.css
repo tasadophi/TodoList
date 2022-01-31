@@ -1,0 +1,39 @@
+.todo {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  width: 60%;
+  border-radius: 8px;
+  background-color: #bae6fd;
+  color: #0c4a6e;
+}
+.todoTitle {
+  cursor: pointer;
+  user-select: none;
+}
+
+.icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.edit {
+  color: #047857;
+}
+
+.delete {
+  color: #dc2626;
+}
+
+@media screen and (max-width: 425px) {
+  .todo {
+    width: 100%;
+    flex-direction: column;
+  }
+  .actions {
+    margin-right: auto;
+  }
+}
