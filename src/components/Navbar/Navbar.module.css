@@ -1,0 +1,24 @@
+.header {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  font-size: 1.5rem;
+  padding: 1rem;
+  text-align: center;
+  margin: 2rem auto;
+  border-radius: 8px;
+}
+
+.titles {
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.titles .title {
+  background-color: #0369a1;
+  color: #e0f2fe;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
