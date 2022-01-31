@@ -10,7 +10,7 @@
   outline: none;
   padding: 1rem 2rem;
   border-radius: 0 8px 8px 0;
-  width: 30rem;
+  width: 25rem;
   font-size: 1.5rem;
 }
 
@@ -32,4 +32,9 @@
   padding: 1rem;
   cursor: pointer;
   border-radius: 8px 0 0 8px;
+}
+@media screen and (min-width: 1024px) {
+  .input {
+    width: 30rem;
+  }
 }
