@@ -1,0 +1,35 @@
+.formContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.input {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #0369a1;
+  outline: none;
+  padding: 1rem 2rem;
+  border-radius: 0 8px 8px 0;
+  width: 30rem;
+  font-size: 1.5rem;
+}
+
+.input::placeholder {
+  color: #0369a1;
+  opacity: 0.6;
+}
+
+.input:focus {
+  border: 2px solid #0369a1;
+}
+
+.btn {
+  background-color: #0369a1;
+  color: #e0f2fe;
+  outline: none;
+  border: 1px solid #0369a1;
+  font-size: 1.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 8px 0 0 8px;
+}
