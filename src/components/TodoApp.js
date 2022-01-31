@@ -10,9 +10,11 @@ const reducer = (state, action) => {
 const TodoApp = ({ children }) => {
   const [todos, dispatch] = useReducer(reducer, []);
   return (
-    <todos.Provider value={todos}>
-      <todosDispatcher value={dispatch}>{children}</todosDispatcher>
-    </todos.Provider>
+    <todosContext.Provider value={todos}>
+      <todosContextDispatcher value={dispatch}>
+        {children}
+      </todosContextDispatcher>
+    </todosContext.Provider>
   );
 };
 
