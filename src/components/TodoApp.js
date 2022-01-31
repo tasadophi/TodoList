@@ -7,7 +7,7 @@ const reducer = (state, action) => {
   console.log(type, state);
 };
 
-const Todo = ({ children }) => {
+const TodoApp = ({ children }) => {
   const [todos, dispatch] = useReducer(reducer, []);
   return (
     <todos.Provider value={todos}>
@@ -16,7 +16,7 @@ const Todo = ({ children }) => {
   );
 };
 
-export default Todo;
+export default TodoApp;
 
 export const useTodos = () => useContext(todosContext);
 export const useTodosDispatch = () => useContext(todosContextDispatcher);
