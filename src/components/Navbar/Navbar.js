@@ -1,7 +1,7 @@
 import styles from "./Navbar.module.css";
 import Select from "react-select";
 import { useState } from "react";
-import { getAllTodos, useTodos, useTodosDispatch } from "../TodoApp";
+import { getAllTodos, useTodosDispatch } from "../TodoApp";
 
 const options = [
   { value: "filterAll", label: "همه" },
