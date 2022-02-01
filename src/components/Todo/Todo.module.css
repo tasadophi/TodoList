@@ -20,6 +20,11 @@
   cursor: pointer;
 }
 
+.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
 .edit {
   color: #047857;
 }
