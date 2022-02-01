@@ -22,6 +22,7 @@ const TodoForm = ({ edit }) => {
   };
 
   const addHandler = () => {
+    if (!input) return alert("چیزی بنویسید!");
     if (input.length < 20) {
       dispatch({ type: "add", value: input });
       if (localStorage.getItem("filterBy"))
@@ -30,7 +31,6 @@ const TodoForm = ({ edit }) => {
     } else {
       alert("مجاز به ثبت ۲۰ کاراکتر هستید!");
     }
-    if (!input) alert("چیزی بنویسید!");
   };
 
   const editHandler = () => {
