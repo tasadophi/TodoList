@@ -34,6 +34,7 @@ const TodoForm = ({ edit }) => {
   };
 
   const editHandler = () => {
+    if (!input) return alert("چیزی بنویسید!");
     if (input.length < 20) {
       dispatch({ type: "edit", value: input });
       if (localStorage.getItem("filterBy"))
