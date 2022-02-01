@@ -7,3 +7,5 @@ It based on functional component!
 I used localstorage for store todos too! 
 
 The project is online on: 
+
+https://pedantic-ardinghelli-eea41b.netlify.app/
