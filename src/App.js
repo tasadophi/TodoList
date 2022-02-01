@@ -1,6 +1,7 @@
 import "./App.css";
+import TodoApp from "./components/TodoApp";
 const App = () => {
-    return ( <h1>Hello React</h1> );
-}
- 
+  return <TodoApp />;
+};
+
 export default App;
