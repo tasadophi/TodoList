@@ -5,7 +5,7 @@ import { useModal, useTodosDispatch } from "../TodoApp";
 import Modal from "../Modal/Modal";
 const Todo = ({ todo }) => {
   const dispatch = useTodosDispatch();
-  const { showModal, setShowModal } = useModal();
+  const { setShowModal } = useModal();
 
   // handlers
   const deleteHandler = (e) => {
@@ -15,7 +15,7 @@ const Todo = ({ todo }) => {
   };
 
   const editHandler = (e) => {
-    setShowModal((prev) => setShowModal(!prev));
+    setShowModal(todo);
   };
 
   const checkHandler = (e) => {
@@ -26,7 +26,6 @@ const Todo = ({ todo }) => {
 
   return (
     <div className={styles.todo}>
-      {showModal ? <Modal todo={todo} /> : ""}
       <span
         className={`${styles.todoTitle} ${todo.done ? styles.done : ""}`}
         onClick={checkHandler}
