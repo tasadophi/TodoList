@@ -33,62 +33,25 @@ const TodoForm = ({ edit }) => {
     }
   };
 
-  const editHandler = () => {
-    if (!input) return alert("چیزی بنویسید!");
-    if (input.length < 20) {
-      dispatch({ type: "edit", value: input });
-      if (localStorage.getItem("filterBy"))
-        dispatch({ type: localStorage.getItem("filterBy") });
-      setInput("");
-    } else {
-      alert("مجاز به ثبت ۲۰ کاراکتر هستید!");
-    }
-  };
-
-  const renderAdd = () => {
-    return (
-      <form
-        className={`${styles.formContainer} container`}
-        onSubmit={submitHandler}
-      >
-        <div>
-          <input
-            ref={inputRef}
-            className={styles.input}
-            value={input}
-            onChange={changeHandler}
-            placeholder="بنویسید ..."
-          ></input>
-          <button type="submit" className={styles.btn} onClick={addHandler}>
-            {<FaRegPlusSquare />}
-          </button>
-        </div>
-      </form>
-    );
-  };
-
-  const renderEdit = () => {
-    return (
-      <form
-        className={`${styles.formContainer} container`}
-        onSubmit={submitHandler}
-      >
-        <div>
-          <input
-            ref={inputRef}
-            className={styles.input}
-            value={input}
-            onChange={changeHandler}
-            placeholder="مقدار جدید ..."
-          ></input>
-          <button type="submit" className={styles.btn} onClick={editHandler}>
-            {<FaEdit />}
-          </button>
-        </div>
-      </form>
-    );
-  };
-  return edit ? renderEdit() : renderAdd();
+  return (
+    <form
+      className={`${styles.formContainer} container`}
+      onSubmit={submitHandler}
+    >
+      <div>
+        <input
+          ref={inputRef}
+          className={styles.input}
+          value={input}
+          onChange={changeHandler}
+          placeholder="بنویسید ..."
+        ></input>
+        <button type="submit" className={styles.btn} onClick={addHandler}>
+          {<FaRegPlusSquare />}
+        </button>
+      </div>
+    </form>
+  );
 };
 
 export default TodoForm;
