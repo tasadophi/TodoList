@@ -16,6 +16,19 @@ const generateId = () => {
   return id;
 };
 
+const generateDate = () => {
+  return new Date().toISOString();
+};
+
+const sortDates = (todos) => {
+  return todos.sort((a, b) => {
+    return (
+      (b.updated ? new Date(b.updated) : 0) -
+      (a.updated ? new Date(a.updated) : 0)
+    );
+  });
+};
+
 const setToStorage = (arrey) => {
   localStorage.setItem("todos", JSON.stringify(arrey));
 };
@@ -29,7 +42,13 @@ export const getAllTodos = () => {
 const reducer = (state, action) => {
   const type = action.type;
   if (type === "add") {
-    const newTodo = { text: action.value, id: generateId(), done: false };
+    const date = generateDate();
+    const newTodo = {
+      text: action.value,
+      created: date,
+      id: generateId(),
+      done: false,
+    };
     const updatedTodos = [...state, newTodo];
     const allTodos = getAllTodos();
     setToStorage([...allTodos, newTodo]);
@@ -43,9 +62,11 @@ const reducer = (state, action) => {
     return updatedTodos;
   } else if (type === "edit") {
     const todos = JSON.parse(localStorage.getItem("todos"));
+    const newDate = generateDate();
     const updatedTodos = [...todos].map(({ ...todo }) => {
       if (todo.id === action.todo.id) {
         todo.text = action.todo.text;
+        todo.updated = newDate;
       }
       return todo;
     });
@@ -64,14 +85,17 @@ const reducer = (state, action) => {
   } else if (type === "filterAll") {
     const allTodos = getAllTodos();
     localStorage.removeItem("filter");
-    return allTodos;
+    const updatedTodos = sortDates(allTodos);
+    return updatedTodos;
   } else if (type === "filterDone") {
-    const allTodos = getAllTodos();
-    const updatedTodos = allTodos.filter(({ ...todo }) => todo.done);
+    let allTodos = getAllTodos();
+    allTodos = allTodos.filter(({ ...todo }) => todo.done);
+    const updatedTodos = sortDates(allTodos);
     return updatedTodos;
   } else if (type === "filterUndone") {
-    const allTodos = getAllTodos();
-    const updatedTodos = allTodos.filter(({ ...todo }) => !todo.done);
+    let allTodos = getAllTodos();
+    allTodos = allTodos.filter(({ ...todo }) => !todo.done);
+    const updatedTodos = sortDates(allTodos);
     return updatedTodos;
   }
 };
