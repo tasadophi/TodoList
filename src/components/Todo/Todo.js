@@ -2,7 +2,6 @@ import styles from "./Todo.module.css";
 import { FaEdit } from "react-icons/fa";
 import { FaEraser } from "react-icons/fa";
 import { useModal, useTodosDispatch } from "../TodoApp";
-import Modal from "../Modal/Modal";
 const Todo = ({ todo }) => {
   const dispatch = useTodosDispatch();
   const { setShowModal } = useModal();
