@@ -87,7 +87,7 @@ const TodoApp = () => {
         <ModalDependencies.Provider value={{ showModal, setShowModal }}>
           {showModal ? <Modal todo={showModal} /> : ""}
           <Navbar />
-          <TodoForm edit={false} />
+          <TodoForm />
           <TodoList />
         </ModalDependencies.Provider>
       </TodosContextDispatcher.Provider>
