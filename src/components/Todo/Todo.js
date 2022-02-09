@@ -1,9 +1,11 @@
 import styles from "./Todo.module.css";
 import { FaEdit } from "react-icons/fa";
 import { FaEraser } from "react-icons/fa";
-import { useTodosDispatch } from "../TodoApp";
+import { useModal, useTodosDispatch } from "../TodoApp";
+import Modal from "../Modal/Modal";
 const Todo = ({ todo }) => {
   const dispatch = useTodosDispatch();
+  const { showModal, setShowModal } = useModal();
 
   // handlers
   const deleteHandler = (e) => {
@@ -13,8 +15,7 @@ const Todo = ({ todo }) => {
   };
 
   const editHandler = (e) => {
-    localStorage.setItem("edit", e.currentTarget.id);
-    dispatch({ type: "setEdit" });
+    setShowModal((prev) => setShowModal(!prev));
   };
 
   const checkHandler = (e) => {
@@ -25,6 +26,7 @@ const Todo = ({ todo }) => {
 
   return (
     <div className={styles.todo}>
+      {showModal ? <Modal todo={todo} /> : ""}
       <span
         className={`${styles.todoTitle} ${todo.done ? styles.done : ""}`}
         onClick={checkHandler}
