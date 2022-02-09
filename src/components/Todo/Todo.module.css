@@ -8,16 +8,31 @@
   border-radius: 8px;
   background-color: #bae6fd;
   color: #0c4a6e;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+}
+
+.date {
+  font-size: 1.4rem;
 }
 .todoTitle {
   cursor: pointer;
   user-select: none;
+  margin-bottom: 1rem;
 }
 
 .icon {
   font-size: 2rem;
   margin-right: 1rem;
   cursor: pointer;
+}
+
+.actions {
+  margin-right: auto;
 }
 
 .done {
@@ -36,9 +51,5 @@
 @media screen and (max-width: 425px) {
   .todo {
     width: 100%;
-    flex-direction: column;
-  }
-  .actions {
-    margin-right: auto;
   }
 }
