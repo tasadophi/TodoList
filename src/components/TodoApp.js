@@ -87,14 +87,8 @@ const TodoApp = () => {
         <ModalDependencies.Provider value={{ showModal, setShowModal }}>
           {showModal ? <Modal todo={showModal} /> : ""}
           <Navbar />
-          {localStorage.getItem("edit") ? (
-            <TodoForm edit={true} />
-          ) : (
-            <>
-              <TodoForm edit={false} />
-              <TodoList />
-            </>
-          )}
+          <TodoForm edit={false} />
+          <TodoList />
         </ModalDependencies.Provider>
       </TodosContextDispatcher.Provider>
     </TodosContext.Provider>
