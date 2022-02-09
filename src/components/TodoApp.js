@@ -1,9 +1,11 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useState } from "react";
+import Modal from "./Modal/Modal";
 import Navbar from "./Navbar/Navbar";
 import TodoForm from "./TodoForm/TodoForm";
 import TodoList from "./TodoList/TodoList";
 const TodosContext = React.createContext();
 const TodosContextDispatcher = React.createContext();
+const ModalDependencies = React.createContext();
 const ids = [];
 
 const generateId = () => {
@@ -39,17 +41,14 @@ const reducer = (state, action) => {
     );
     setToStorage(updatedTodos);
     return updatedTodos;
-  } else if (type === "setEdit") {
-    return [];
   } else if (type === "edit") {
     const todos = JSON.parse(localStorage.getItem("todos"));
     const updatedTodos = [...todos].map(({ ...todo }) => {
-      if (todo.id === parseInt(localStorage.getItem("edit"))) {
-        todo.text = action.value;
+      if (todo.id === action.todo.id) {
+        todo.text = action.todo.text;
       }
       return todo;
     });
-    localStorage.removeItem("edit");
     setToStorage(updatedTodos);
     return updatedTodos;
   } else if (type === "check") {
@@ -79,20 +78,24 @@ const reducer = (state, action) => {
 
 const TodoApp = () => {
   const [todos, dispatch] = useReducer(reducer, []);
+  const [showModal, setShowModal] = useState(null);
   if (!localStorage.getItem("filterBy") && !localStorage.getItem("edit"))
     localStorage.setItem("todos", JSON.stringify(todos));
   return (
     <TodosContext.Provider value={todos}>
       <TodosContextDispatcher.Provider value={dispatch}>
-        <Navbar />
-        {localStorage.getItem("edit") ? (
-          <TodoForm edit={true} />
-        ) : (
-          <>
-            <TodoForm edit={false} />
-            <TodoList />
-          </>
-        )}
+        <ModalDependencies.Provider value={{ showModal, setShowModal }}>
+          {showModal ? <Modal todo={showModal} /> : ""}
+          <Navbar />
+          {localStorage.getItem("edit") ? (
+            <TodoForm edit={true} />
+          ) : (
+            <>
+              <TodoForm edit={false} />
+              <TodoList />
+            </>
+          )}
+        </ModalDependencies.Provider>
       </TodosContextDispatcher.Provider>
     </TodosContext.Provider>
   );
@@ -102,3 +105,4 @@ export default TodoApp;
 
 export const useTodos = () => useContext(TodosContext);
 export const useTodosDispatch = () => useContext(TodosContextDispatcher);
+export const useModal = () => useContext(ModalDependencies);
