@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useModal, useTodosDispatch } from "../TodoApp";
 import styles from "./Modal.module.css";
 import "animate.css";
+import { toast } from "react-toastify";
 const Modal = ({ todo }) => {
   const [input, setInput] = useState("");
   const dispatch = useTodosDispatch();
@@ -15,15 +16,16 @@ const Modal = ({ todo }) => {
   //   handlers
   const editHandler = (e) => {
     e.preventDefault();
-    if (!input) return alert("چیزی بنویسید!");
+    if (!input) return toast.error("چیزی بنویسید!");
     if (input.length < 20) {
       dispatch({ type: "edit", todo: { ...todo, text: input } });
       setShowModal((prev) => !prev);
       if (localStorage.getItem("filterBy"))
         dispatch({ type: localStorage.getItem("filterBy") });
       setInput("");
+      toast.success("ویرایش شد");
     } else {
-      alert("مجاز به ثبت ۲۰ کاراکتر هستید!");
+      toast.error("مجاز به ثبت ۲۰ کاراکتر هستید!");
     }
   };
 

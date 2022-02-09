@@ -2,6 +2,7 @@ import styles from "./Todo.module.css";
 import { FaEdit } from "react-icons/fa";
 import { FaEraser } from "react-icons/fa";
 import { useModal, useTodosDispatch } from "../TodoApp";
+import { toast } from "react-toastify";
 const Todo = ({ todo }) => {
   const dispatch = useTodosDispatch();
   const { setShowModal } = useModal();
@@ -11,6 +12,7 @@ const Todo = ({ todo }) => {
     dispatch({ type: "delete", id: e.currentTarget.id });
     if (localStorage.getItem("filterBy"))
       dispatch({ type: localStorage.getItem("filterBy") });
+    toast.warn("حذف شد!")
   };
 
   const editHandler = () => {
