@@ -1,6 +1,5 @@
 import styles from "./TodoForm.module.css";
 import { FaRegPlusSquare } from "react-icons/fa";
-import { FaEdit } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
 import { useTodosDispatch } from "../TodoApp";
 const TodoForm = ({ edit }) => {
