@@ -14,7 +14,7 @@ const Todo = ({ todo }) => {
       dispatch({ type: localStorage.getItem("filterBy") });
   };
 
-  const editHandler = (e) => {
+  const editHandler = () => {
     setShowModal(todo);
   };
 
